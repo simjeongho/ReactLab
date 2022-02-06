@@ -12,13 +12,14 @@ import { InitialState } from "../../store/slice/user";
 import { PracticeAsync, SagaPracticeLogin } from "src/feature/login";
 import initializeNaverLogin from "../../component/naverLogin";
 import { NaverLoginBody } from "../../component/naverLogin/styled";
+import { useLocation } from "react-router-dom";
 
 const Login = () => {
 	const dispatch = useDispatch();
 	const userInfo = useSelector(selectUser);
 	const [userId, userIdhandler, setUserId] = useInput("");
 	const [userPassword, setUserPassword] = useState("");
-
+	const location = useLocation();
 	const handleUserPassword = useCallback((e) => {
 		setUserPassword(e.target.value);
 	}, []);
@@ -32,8 +33,15 @@ const Login = () => {
 		//alert(`${userId} , ${userInfo.isLogginIn}`);
 	};
 
+	const getNaverToken = () => {
+		if (!location.hash) return;
+		const token = location.hash.split("=")[1].split("&")[0];
+		console.log(token);
+	};
+
 	useEffect(() => {
 		initializeNaverLogin();
+		getNaverToken();
 	}, []);
 	return (
 		<>

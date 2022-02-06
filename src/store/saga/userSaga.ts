@@ -38,7 +38,7 @@ function* helloSaga() {
 	while (true) {
 		yield take(loginSuccess);
 		console.log("loginSuccess Watching");
-		alert("loginSuccess!");
+		alert("loginSuccess!"); //무한 watch 가능
 	}
 }
 export default function* userSaga() {
