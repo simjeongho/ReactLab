@@ -34,6 +34,8 @@ export const PracticeAsync = async () => {
 		password: "daeun",
 	});
 
+	console.log(result);
+
 	return result;
 };
 

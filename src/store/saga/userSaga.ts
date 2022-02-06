@@ -5,36 +5,42 @@ import delay from "../../apis/delay";
 function loginAPI() {}
 
 async function loginPractice() {
-  const result = await delay(5000, {
-    id: "jeongho",
-    password: "daeun",
-  });
+	const result = await delay(5000, {
+		id: "jeongho",
+		password: "daeunSaga",
+	});
+	console.log(result);
+	setTimeout(() => {
+		console.log("사가 타임 지나는 중");
+	}, 1000);
 
-  setTimeout(() => {
-    console.log("사가 타임 지나는 중");
-  }, 1000);
-
-  return result;
+	return result;
 }
 
 function* loginSaga() {
-  try {
-    yield call(loginPractice);
-    yield put(loginSuccess());
-  } catch (e) {
-    console.error(e);
-    yield put(loginFailure());
-  }
+	try {
+		yield call(loginPractice);
+		yield put(loginSuccess());
+	} catch (e) {
+		console.error(e);
+		yield put(loginFailure());
+	}
 }
 
 function* watchLogin() {
-  yield takeLatest(loginRequest, loginSaga);
+	yield takeLatest(loginRequest, loginSaga);
 }
 function* helloSaga() {
-  console.log("before hello saga");
-  //yield take(helloSaga);
-  console.log("hello saga");
+	console.log("before hello saga");
+	//yield take(helloSaga);
+	console.log("hello saga");
+
+	while (true) {
+		yield take(loginSuccess);
+		console.log("loginSuccess Watching");
+		alert("loginSuccess!");
+	}
 }
 export default function* userSaga() {
-  yield all([fork(watchLogin), helloSaga()]);
+	yield all([fork(watchLogin), helloSaga()]);
 }
