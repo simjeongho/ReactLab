@@ -16,9 +16,9 @@ export const LayoutContainer = styled.section`
 `;
 
 export const LayoutHeader = styled.header`
-  height: 10%;
+  height: 20%;
   width: 100%;
   display: flex;
-  background-color: olivedrab;
+  background-color: var(--color-light-gray);
   justify-content: center;
 `;

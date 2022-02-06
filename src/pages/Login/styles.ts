@@ -6,14 +6,16 @@ export const LoginContainer = styled.form`
   width: 60%;
 `;
 export const LoginInput = styled.input`
-  background-color: olivedrab;
+  background-color: var(--color-light-gray);
   color: black;
   font-size: 1.5rem;
   border-radius: 30px;
+  margin-top: 5%;
 `;
 
 export const LoginButton = styled.button`
   border-style: dashed;
+  margin-top: 5%;
 `;
 
 export const LoadingIndicatorContainer = styled.div`
