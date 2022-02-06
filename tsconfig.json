@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "lib": ["ES2020", "DOM"],
+    "jsx": "react",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "target": "esnext",
+    "strict": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@hooks/*": ["src/hooks/*"],
+      "@components/*": ["src/components/*"],
+      "@pages/*": ["src/pages/*"],
+      "@utils/*": ["src/utils/*"],
+      "@stores/*": ["src/stores/*"],
+      "@assets/*": ["src/assets/*"],
+      "@services/*": ["src/services/*"],
+      "@constants/*": ["src/constants/*"],
+      "@apis/*": ["src/apis/*"],
+      "@store/*": ["src/store/*"],
+      "@types/*": ["src/types/*"]
+    }
+  },
+  "exclude": ["**/*.spec.ts"]
+}
