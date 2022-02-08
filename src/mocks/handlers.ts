@@ -1,3 +1,5 @@
+import { PayloadAction } from "@reduxjs/toolkit";
+import { UserData } from "./../store/slice/user";
 import { rest } from "msw";
 
 export const handlers = [
@@ -40,6 +42,16 @@ export const handlers = [
 		return res(
 			ctx.json({
 				name: "jeongho",
+			}),
+		);
+	}),
+
+	rest.post("/login", async (req, res, ctx) => {
+		return res(
+			ctx.json({
+				id: req.body,
+				password: "daeunmock",
+				admin: true,
 			}),
 		);
 	}),

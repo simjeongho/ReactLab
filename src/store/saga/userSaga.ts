@@ -1,3 +1,5 @@
+import { UserData } from "./../slice/user";
+import axios, { AxiosResponse } from "axios";
 import { useDispatch } from "react-redux";
 import { loginFailure, loginRequest, loginSuccess } from "../slice/user";
 import { all, fork, takeLatest, call, put, take } from "redux-saga/effects";
@@ -17,9 +19,29 @@ async function loginPractice() {
 	return result;
 }
 
+async function loginMock() {
+	setTimeout(() => {
+		console.log("사가 타임 지나는 중");
+	}, 1000);
+	axios
+		.post("/login", {
+			data: {
+				id: "jeongho",
+				password: "daeunpost",
+				admin: true,
+			},
+		})
+		.then((res: AxiosResponse<UserData>) => {
+			JSON.stringify(res);
+			console.log(`res는 ${res}`);
+			return res;
+		});
+}
+
 function* loginSaga() {
 	try {
-		yield call(loginPractice);
+		//yield call(loginPractice);
+		yield call(loginMock);
 		yield put(loginSuccess());
 	} catch (e) {
 		console.error(e);
