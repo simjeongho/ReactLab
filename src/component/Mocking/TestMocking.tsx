@@ -39,6 +39,16 @@ const TestMocking = () => {
 			});
 	};
 
+	const handleDataClick2 = () => {
+		fetch("/test")
+			.then((res) => {
+				return res.json();
+			})
+			.then((json) => {
+				console.log(JSON.stringify(json));
+			});
+	};
+
 	if (error) {
 		return <p>{error}</p>;
 	}
@@ -46,6 +56,7 @@ const TestMocking = () => {
 	return (
 		<>
 			<button onClick={handleDataClick}>데이터 가져오기 </button>
+			<button onClick={handleDataClick2}>데이터 가져오기2 </button>
 			<h1>이 곳에 데이터를 가져올 것</h1>
 			{data && (
 				<ul>
