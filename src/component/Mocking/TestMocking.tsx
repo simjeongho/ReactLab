@@ -22,7 +22,7 @@ const Item = (peopleData: PeopleData) => {
 const TestMocking = () => {
 	const [data, setData] = useState<PeopleApiResult | null>(null);
 	const [error, setError] = useState("");
-	const url = "https://raw.githubusercontent.com/techoi/raw-data-api/main/simple-api.json";
+	const url = "https://raw.githubusercontent.com/techoi/raw-data-api/main/simple-api.json?id=react";
 	const handleDataClick = () => {
 		fetch(url)
 			.then((res) => {
