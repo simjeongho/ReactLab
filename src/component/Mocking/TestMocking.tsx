@@ -1,22 +1,24 @@
 import React, { useState } from "react";
 
-type APIResult<T> = {
-	data: T;
+type PeopleData = {
+	name: string;
+	age: number;
+};
+type PeopleApiResult = {
+	people: PeopleData[];
 };
 
-type PeopleData = APIResult<{
-	people: {
-		name: string;
-		age: number;
-	};
-}>;
-
 const Item = (peopleData: PeopleData) => {
-	return <li>name: {peopleData.data.people.name}</li>;
+	return (
+		<li>
+			{" "}
+			name: {peopleData.name} / age:{peopleData.age}
+		</li>
+	);
 };
 
 const TestMocking = () => {
-	const [data, setData] = useState<PeopleData | null>();
+	const [data, setData] = useState<PeopleApiResult | null>(null);
 	const [error, setError] = useState("");
 	const url = "https://raw.githubusercontent.com/techoi/raw-data-api/main/simple-api.json";
 	const handleDataClick = () => {
@@ -25,7 +27,10 @@ const TestMocking = () => {
 				return res.json();
 			})
 			.then((json) => {
+				console.log("setData");
+				console.log(json.data);
 				setData(json.data);
+				console.log(`data: ${data}`);
 			})
 			.catch((error) => {
 				setError(`something wrong: ${error} `);
@@ -39,7 +44,14 @@ const TestMocking = () => {
 	return (
 		<>
 			<button onClick={handleDataClick}>데이터 가져오기 </button>
-			{data && data.data.people}
+			<h1>이 곳에 데이터를 가져올 것</h1>
+			{data && (
+				<ul>
+					{data.people.map((person) => (
+						<Item key={`${person.name}-${person.age}`} name={person.name} age={person.age} />
+					))}
+				</ul>
+			)}
 		</>
 	);
 };
