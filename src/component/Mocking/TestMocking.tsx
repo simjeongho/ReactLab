@@ -8,6 +8,8 @@ type PeopleApiResult = {
 	people: PeopleData[];
 };
 
+//타입스크립트에서 api로 받아오는 타입 설정
+
 const Item = (peopleData: PeopleData) => {
 	return (
 		<li>
