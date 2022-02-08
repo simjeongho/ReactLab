@@ -1,5 +1,12 @@
 import React from "react";
-import { LoginContainer, LoginInput, LoginButton, LoadingIndicatorContainer, LoadingIndicator } from "./styles";
+import {
+	LoginContainer,
+	LoginInput,
+	LoginButton,
+	LoadingIndicatorContainer,
+	LoadingIndicator,
+	TestLinkButton,
+} from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../store/store";
 import useInput from "../../hooks/useInput";
@@ -13,7 +20,6 @@ import { PracticeAsync, SagaPracticeLogin } from "src/feature/login";
 import initializeNaverLogin from "../../component/naverLogin";
 import { NaverLoginBody } from "../../component/naverLogin/styled";
 import { useLocation } from "react-router-dom";
-
 const Login = () => {
 	const dispatch = useDispatch();
 	const userInfo = useSelector(selectUser);
@@ -55,6 +61,7 @@ const Login = () => {
 					<LoginInput value={userPassword} onChange={handleUserPassword} placeholder="비밀번호를 입력하시오" />
 					<LoginButton type="submit">로그인</LoginButton>
 					<NaverLoginBody id="naverIdLogin" />
+					<TestLinkButton to="/test">test페이지로 이동</TestLinkButton>
 				</LoginContainer>
 			)}
 		</>

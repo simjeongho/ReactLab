@@ -36,4 +36,11 @@ export const handlers = [
 			);
 		},
 	),
+	rest.get("/api/swr", async (req, res, ctx) => {
+		return res(
+			ctx.json({
+				name: "jeongho",
+			}),
+		);
+	}),
 ];
