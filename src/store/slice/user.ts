@@ -18,7 +18,7 @@ export type UserData = {
 	name: string;
 };
 export type ApiResult<T> = {
-	status: string;
+	status: number;
 	data: T;
 };
 export type CheckUserResult = ApiResult<{
