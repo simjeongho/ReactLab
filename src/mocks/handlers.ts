@@ -46,7 +46,7 @@ export const handlers = [
 		);
 	}),
 
-	rest.post("/login", async (req, res, ctx) => {
+	rest.post("/login/testlogin", async (req, res, ctx) => {
 		return res(
 			ctx.json({
 				id: req.body,

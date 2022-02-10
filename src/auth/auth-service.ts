@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AxiosInstance, AxiosResponse } from "axios";
+import { AxiosInstance } from "axios";
 import { LoginRequest, LoginResult } from "./types";
 
 class AuthService {

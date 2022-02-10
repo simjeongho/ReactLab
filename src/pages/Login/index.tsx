@@ -1,26 +1,17 @@
 import React from "react";
-import {
-	LoginContainer,
-	LoginInput,
-	LoginButton,
-	LoadingIndicatorContainer,
-	LoadingIndicator,
-	TestLinkButton,
-} from "./styled";
+import { LoginContainer, LoadingIndicatorContainer, LoadingIndicator, TestLinkButton, LoginButton } from "./styled";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../store/store";
 import useInput from "../../hooks/useInput";
 import { useState } from "react";
 import { useCallback } from "react";
 import { useEffect } from "react";
-import userSlice, { loginRequest } from "../../store/slice/user";
-import { newLogin } from "../../store/slice/user";
-import { InitialState } from "../../store/slice/user";
-import { PracticeAsync, SagaPracticeLogin } from "src/feature/login/login";
-import initializeNaverLogin from "../../component/naverLogin";
-import { NaverLoginBody } from "../../component/naverLogin/styled";
+import { loginRequest } from "../../store/slice/user";
+import { PracticeAsync } from "@components/feature/login/login";
+import initializeNaverLogin from "../../components/naverLogin";
+import { NaverLoginBody } from "../../components/naverLogin/styled";
 import { useLocation } from "react-router-dom";
-import { FormInput } from "src/shared/form-input/styled";
+import { FormInput } from "@shared/form-input/styled";
 const Login = () => {
 	const dispatch = useDispatch();
 	const userInfo = useSelector(selectUser);

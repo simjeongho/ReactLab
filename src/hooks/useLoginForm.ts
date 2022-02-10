@@ -1,6 +1,6 @@
 import { loginFailure, loginSuccess } from "@store/slice/user";
 import { useDispatch } from "react-redux";
-import AuthService from "src/auth/auth-service";
+import AuthService from "@auth/auth-service";
 
 const authService = new AuthService();
 const UseLoginForm = (id: string, password: string) => {

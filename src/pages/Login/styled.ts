@@ -1,4 +1,4 @@
-import { FormConfirmButton } from "./../../shared/form-buttons/styled";
+import { FormConfirmButton } from "../../shared/form-buttons/styled";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
