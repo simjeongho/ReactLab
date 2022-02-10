@@ -1,8 +1,18 @@
 :root {
+	--color-white: #ffffff;
+	--color-dark-white: #f9f9f9;
+	--color-lighter-gray: #dddddd;
 	--color-light-gray: #b7b7b7;
+	--color-gray: #adacac;
 	--color-dark-gray: #848484;
 	--color-darker-gray: #656565;
-	--color-black: rgb(7, 7, 7);
+	--color-blue: #0265f9;
+	--color-red: #e95555;
+
+	--font-nanum-light: "nanum_light";
+	--font-nanum-regular: "nanum_regular";
+	--font-nanum-bold: "nanum_bold";
+	--font-nanum-black: "nanum_black";
 }
 
 body {

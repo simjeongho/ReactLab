@@ -1,3 +1,4 @@
+import { FormConfirmButton } from "./../../shared/form-buttons/styled";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -5,6 +6,7 @@ export const LoginContainer = styled.form`
 	display: flex;
 	flex-direction: column;
 	width: 60%;
+	padding: 0 6%;
 `;
 export const LoginInput = styled.input`
 	background-color: var(--color-light-gray);
@@ -14,9 +16,9 @@ export const LoginInput = styled.input`
 	margin-top: 5%;
 `;
 
-export const LoginButton = styled.button`
-	border-style: dashed;
-	margin-top: 5%;
+export const LoginButton = styled(FormConfirmButton)`
+	width: 100%;
+	margin: 2% 0 6.5% 0;
 `;
 
 export const LoadingIndicatorContainer = styled.div`
