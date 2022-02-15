@@ -1,6 +1,8 @@
+import { LoadingIndicator, LoadingIndicatorContainer } from "@pages/Login/styled";
 import axios from "axios";
 import React, { useEffect } from "react";
 import useSWR from "swr";
+import Loadingindicator from "@assets/image/loading_indicator.png";
 
 type SWRAPIResult<T> = {
 	status: number;
@@ -18,10 +20,15 @@ type SWRPerson = {
 };
 const SWRLab = () => {
 	const fetcher = (url: string) => axios.get(url).then((res) => res.data);
-	const { data, error } = useSWR("/swrmocking", fetcher, { refreshInterval: 1000 });
+	const { data, error } = useSWR("/swrmocking", fetcher, { refreshInterval: 10000 });
 
 	if (error) return <div>failed to compile </div>;
-	if (!data) return <div>...loading</div>;
+	if (!data)
+		return (
+			<LoadingIndicatorContainer>
+				<LoadingIndicator src={Loadingindicator} alt="loading" />
+			</LoadingIndicatorContainer>
+		);
 
 	return (
 		<>

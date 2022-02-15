@@ -7,7 +7,7 @@
 			"@pages/*": ["./pages/*"],
 			"@utils/*": ["./utils/*"],
 			"@stores/*": ["./stores/*"],
-			"@assets/*": ["./assets/*"],
+
 			"@services/*": ["./services/*"],
 			"@constants/*": ["./constants/*"],
 			"@apis/*": ["./apis/*"],
@@ -15,7 +15,8 @@
 			"@types/*": ["./types/*"],
 			"@shared/*": ["./shared/*"],
 			"@mocks/*": ["./mocks/*"],
-			"@auth/*": ["./auth/*"]
+			"@auth/*": ["./auth/*"],
+			"@assets/*": ["./assets/*"]
 		}
 	}
 }
