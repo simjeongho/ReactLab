@@ -18,9 +18,7 @@ type SWRPerson = {
 };
 const SWRLab = () => {
 	const fetcher = (url: string) => axios.get(url).then((res) => res.data);
-	const { data, error } = useSWR("/swrmocking", fetcher);
-
-	console.log(data.people);
+	const { data, error } = useSWR("/swrmocking", fetcher, { refreshInterval: 1000 });
 
 	if (error) return <div>failed to compile </div>;
 	if (!data) return <div>...loading</div>;
