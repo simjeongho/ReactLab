@@ -10,7 +10,8 @@ const LoginLab = () => {
 	const [admin, setadmin] = useState<Boolean>(false);
 	console.log(userid);
 
-	const handleSubmitLoginLab = () => {
+	const handleSubmitLoginLab = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
 		axios.post("/loginlaboratory", { id: userid, password: userpassword }).then((res: LoginResult) => {
 			const { admin } = res.data;
 			if (admin === true) {
@@ -19,7 +20,6 @@ const LoginLab = () => {
 				setadmin(false);
 			}
 			const { id, password } = res.data.loginRequest;
-			return [admin, id, password];
 		});
 	};
 
