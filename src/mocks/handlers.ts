@@ -80,6 +80,9 @@ export const handlers = [
 
 	rest.post("loginlaboratory", async (req: RestRequest<LoginRequest>, res, ctx) => {
 		const { id, password } = req.body;
+		setTimeout(() => {
+			console.log("시간 지나는 중");
+		}, 1000);
 
 		if (id === "jeongho" && password === "daeun") {
 			return res(
@@ -104,5 +107,26 @@ export const handlers = [
 				}),
 			);
 		}
+	}),
+
+	rest.get("/swrmocking", async (req, res, ctx) => {
+		return res(
+			ctx.json({
+				people: [
+					{
+						name: "jeongho",
+						school: "inha",
+					},
+					{
+						name: "daeun",
+						school: "inha",
+					},
+					{
+						name: "suri",
+						school: "street",
+					},
+				],
+			}),
+		);
 	}),
 ];
