@@ -1,3 +1,5 @@
+import { LoginResult } from "@auth/types";
+import axios from "axios";
 import React, { useState } from "react";
 
 type PeopleData = {
@@ -22,6 +24,7 @@ const Item = (peopleData: PeopleData) => {
 const TestMocking = () => {
 	const [data, setData] = useState<PeopleApiResult | null>(null);
 	const [error, setError] = useState("");
+	const [mocktest, setMocktest] = useState<LoginResult | null>(null);
 	const url = "https://raw.githubusercontent.com/techoi/raw-data-api/main/simple-api.json?id=react";
 	const handleDataClick = () => {
 		fetch(url)
@@ -49,6 +52,15 @@ const TestMocking = () => {
 			});
 	};
 
+	const handleTestLogin = () => {
+		axios.post("/login/testlogin", { id: "jeongho", password: "daeun" }).then((res: LoginResult) => {
+			console.log(res.data);
+
+			console.log(mocktest);
+			return res.data;
+		});
+	};
+
 	if (error) {
 		return <p>{error}</p>;
 	}
@@ -65,6 +77,9 @@ const TestMocking = () => {
 					))}
 				</ul>
 			)}
+
+			<button onClick={handleTestLogin}> 로그인 테스트 </button>
+			{mocktest && <h1>{mocktest}</h1>}
 		</>
 	);
 };

@@ -1,6 +1,8 @@
+import { LoginRequest } from "./../auth/types";
+import { loginRequest } from "@store/slice/user";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { UserData } from "./../store/slice/user";
-import { rest } from "msw";
+import { rest, RestRequest } from "msw";
 
 export const handlers = [
 	rest.get("/test", async (req, res, ctx) => {
@@ -46,13 +48,61 @@ export const handlers = [
 		);
 	}),
 
-	rest.post("/login/testlogin", async (req, res, ctx) => {
-		return res(
-			ctx.json({
-				id: req.body,
-				password: "daeunmock",
-				admin: true,
-			}),
-		);
+	rest.post("/login/testlogin", async (req: RestRequest<LoginRequest>, res, ctx) => {
+		const json = JSON.stringify(req.body);
+		console.log(json);
+		console.log(req.body);
+		const { id } = req.body;
+		if (id === "jeongho") {
+			return res(
+				ctx.json({
+					loginRequest: {
+						id: "id == 정호",
+						password: "daeun test",
+					},
+					admin: true,
+					message: "/login/testlogin",
+				}),
+			);
+		} else {
+			return res(
+				ctx.json({
+					loginRequest: {
+						id: "id 정호아님",
+						password: "daeun test",
+					},
+					admin: true,
+					message: "/login/testlogin",
+				}),
+			);
+		}
+	}),
+
+	rest.post("loginlaboratory", async (req: RestRequest<LoginRequest>, res, ctx) => {
+		const { id, password } = req.body;
+
+		if (id === "jeongho" && password === "daeun") {
+			return res(
+				ctx.json({
+					loginRequest: {
+						id: id,
+						password: password,
+					},
+					admin: true,
+					message: "/loginlaboratory admin",
+				}),
+			);
+		} else {
+			return res(
+				ctx.json({
+					loginRequest: {
+						id: id,
+						password: password,
+					},
+					admin: false,
+					message: "/loginlaboratory not admin",
+				}),
+			);
+		}
 	}),
 ];

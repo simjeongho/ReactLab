@@ -5,6 +5,7 @@ export type LoginRequest = {
 };
 
 export type LoginResult = ApiResult<{
-	admin: string;
+	loginRequest: LoginRequest;
+	admin: boolean;
 	message: string;
 }>;
