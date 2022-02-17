@@ -8,14 +8,14 @@ export type InitialState = {
 	password: string;
 	loginState: boolean;
 	admin: boolean;
-	isLogginIn: boolean;
+	isLoggingIn: boolean;
+	message: string;
 };
 
 export type UserData = {
 	id: string;
 	password: string;
 	admin: boolean;
-	name: string;
 };
 export type ApiResult<T> = {
 	status: number;
@@ -30,7 +30,8 @@ const initialState: InitialState = {
 	password: "",
 	loginState: false,
 	admin: false,
-	isLogginIn: false,
+	isLoggingIn: false,
+	message: "",
 };
 
 export const newLogin = createAsyncThunk("user/newLogIn", async () => {
@@ -45,19 +46,17 @@ const userSlice = createSlice({
 	initialState,
 	reducers: {
 		loginRequest(state) {
-			state.isLogginIn = true;
+			state.isLoggingIn = true;
 		},
 		loginSuccess(state) {
 			//state.id = action.payload;
 			// state.password = action.payload;
 			state.loginState = true;
-			state.isLogginIn = false;
+			state.isLoggingIn = false;
 		},
 		loginFailure(state) {
-			state.isLogginIn = false;
-		},
-		isLoggingIn(state) {
-			state.isLogginIn = true;
+			state.loginState = false;
+			state.isLoggingIn = false;
 		},
 		helloSaga(sdfd) {
 			console.log("hello Saga reducer 불림 ");
@@ -74,16 +73,16 @@ const userSlice = createSlice({
 
 	extraReducers: (builder) => {
 		builder.addCase(newLogin.pending, (state, action) => {
-			state.isLogginIn = true;
+			state.isLoggingIn = true;
 		});
 		builder.addCase(newLogin.fulfilled, (state, action) => {
-			state.isLogginIn = false;
+			state.isLoggingIn = false;
 		});
 		builder.addCase(newLogin.rejected, (state) => {
-			state.isLogginIn = false;
+			state.isLoggingIn = false;
 		});
 	},
 });
 
 export default userSlice;
-export const { loginRequest, loginSuccess, loginFailure, helloSaga } = userSlice.actions;
+export const { loginRequest, loginSuccess, loginFailure, helloSaga, setUser, setAdmin } = userSlice.actions;
