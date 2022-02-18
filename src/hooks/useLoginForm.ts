@@ -1,4 +1,4 @@
-import { loginFailure, loginSuccess } from "@store/slice/user";
+import { loginFailure, loginSuccess, loginRequestAction, setUser, setAdmin } from "@store/slice/user";
 import { useDispatch } from "react-redux";
 import AuthService from "@auth/auth-service";
 
@@ -11,18 +11,22 @@ const UseLoginForm = (id: string, password: string) => {
 			id: id,
 			password: password,
 		};
-
 		try {
 			const {
 				status,
-				data: { message },
+				statusText,
+				data: { admin, loginRequest },
 			} = await authService.login(data);
-			if (status >= 400) {
-				console.log("login fail");
-				dispatch(loginFailure());
-			}
+			dispatch(loginRequestAction());
 			if (status === 200) {
 				dispatch(loginSuccess());
+				console.log("login Success");
+				//dispatch(setUser(loginRequest));
+				if (admin === true) {
+					dispatch(setAdmin());
+				}
+			} else {
+				throw new Error("에러에염");
 			}
 		} catch (error: any) {
 			console.log(`error!: ${error}`);

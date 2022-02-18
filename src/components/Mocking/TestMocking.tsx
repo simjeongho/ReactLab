@@ -52,15 +52,6 @@ const TestMocking = () => {
 			});
 	};
 
-	const handleTestLogin = () => {
-		axios.post("/login/testlogin", { id: "jeongho", password: "daeun" }).then((res: LoginResult) => {
-			console.log(res.data);
-
-			console.log(mocktest);
-			return res.data;
-		});
-	};
-
 	if (error) {
 		return <p>{error}</p>;
 	}
@@ -78,7 +69,6 @@ const TestMocking = () => {
 				</ul>
 			)}
 
-			<button onClick={handleTestLogin}> 로그인 테스트 </button>
 			{mocktest && <h1>{mocktest}</h1>}
 		</>
 	);

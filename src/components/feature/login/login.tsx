@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import delay from "../../../apis/delay";
 import { useDispatch } from "react-redux";
-import { loginRequest, helloSaga } from "../../../store/slice/user";
+import { loginRequestAction, helloSaga } from "../../../store/slice/user";
 
 const newSagaLogin = createAsyncThunk("user/logIn", async (data: void, thunkAPI) => {
 	console.log(data);
@@ -18,7 +18,7 @@ export const SagaPracticeLogin = async () => {
 		id: "jeongho",
 		password: "daeun",
 	});
-	dispatch(loginRequest());
+	dispatch(loginRequestAction());
 	dispatch(helloSaga());
 	console.log(result);
 	return result;

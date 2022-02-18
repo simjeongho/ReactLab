@@ -1,3 +1,4 @@
+import { LoginRequest } from "./../../auth/types";
 //import { loginRequest } from "@store/slice/user";
 import delay from "../../apis/delay";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -17,14 +18,7 @@ export type UserData = {
 	password: string;
 	admin: boolean;
 };
-export type ApiResult<T> = {
-	status: number;
-	data: T;
-};
-export type CheckUserResult = ApiResult<{
-	user: UserData | null;
-	status: boolean;
-}>;
+
 const initialState: InitialState = {
 	id: "",
 	password: "",
@@ -45,7 +39,7 @@ const userSlice = createSlice({
 	name: "user",
 	initialState,
 	reducers: {
-		loginRequest(state) {
+		loginRequestAction(state) {
 			state.isLoggingIn = true;
 		},
 		loginSuccess(state) {
@@ -62,7 +56,7 @@ const userSlice = createSlice({
 			console.log("hello Saga reducer 불림 ");
 		},
 
-		setUser(state, action: PayloadAction<UserData>) {
+		setUser(state, action: PayloadAction<LoginRequest>) {
 			state.id = action.payload.id;
 			state.password = action.payload.password;
 		},
@@ -85,4 +79,4 @@ const userSlice = createSlice({
 });
 
 export default userSlice;
-export const { loginRequest, loginSuccess, loginFailure, helloSaga, setUser, setAdmin } = userSlice.actions;
+export const { loginRequestAction, loginSuccess, loginFailure, helloSaga, setUser, setAdmin } = userSlice.actions;

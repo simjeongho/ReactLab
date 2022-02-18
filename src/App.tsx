@@ -15,10 +15,10 @@ const App = () => {
 			<Suspense fallback={null}>
 				<BrowserRouter>
 					<Routes>
-						<Route path="/" element={<Login />} />
+						<Route path="/" element={<LoginLabPage />} />
 						<Route path="/test" element={<TestMocking />} />
 						<Route path="/swr" element={<SWRLab />} />
-						<Route path="/loginlab" element={<LoginLabPage />} />
+						<Route path="/loginlab" element={<Login />} />
 					</Routes>
 				</BrowserRouter>
 			</Suspense>

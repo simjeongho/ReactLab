@@ -6,7 +6,7 @@ import useInput from "../../hooks/useInput";
 import { useState } from "react";
 import { useCallback } from "react";
 import { useEffect } from "react";
-import { loginRequest } from "../../store/slice/user";
+import { loginRequestAction } from "../../store/slice/user";
 import { PracticeAsync } from "@components/feature/login/login";
 import initializeNaverLogin from "../../components/naverLogin";
 import { NaverLoginBody } from "../../components/naverLogin/styled";
@@ -25,7 +25,7 @@ const Login = () => {
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		PracticeAsync();
-		dispatch(loginRequest());
+		dispatch(loginRequestAction());
 		//dispatch(newLogin()); // CreateAsyncThunk 연습
 		//SagaPracticeLogin(); //saga연습
 		//alert(`${userId} , ${userInfo.isLogginIn}`);
@@ -43,7 +43,7 @@ const Login = () => {
 	}, []);
 	return (
 		<>
-			{userInfo.isLogginIn ? (
+			{userInfo.isLoggingIn ? (
 				<LoadingIndicatorContainer>
 					<LoadingIndicator src="img/loading-indicator.png" alt="loading-indicator" />
 				</LoadingIndicatorContainer>

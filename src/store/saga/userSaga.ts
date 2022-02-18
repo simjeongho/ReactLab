@@ -1,7 +1,9 @@
+import { LoginRequest } from "./../../auth/types";
+import AuthService from "@auth/auth-service";
 import { UserData } from "./../slice/user";
 import axios, { AxiosResponse } from "axios";
 import { useDispatch } from "react-redux";
-import { loginFailure, loginRequest, loginSuccess } from "../slice/user";
+import { loginFailure, loginRequestAction, loginSuccess } from "../slice/user";
 import { all, fork, takeLatest, call, put, take } from "redux-saga/effects";
 import delay from "../../apis/delay";
 function loginAPI() {}
@@ -49,9 +51,9 @@ function* loginSaga() {
 	}
 }
 
-function* watchLogin() {
-	yield takeLatest(loginRequest, loginSaga);
-}
+// function* watchLogin() {
+// 	yield takeLatest(loginRequest, loginSaga);
+// }
 function* helloSaga() {
 	console.log("before hello saga");
 	//yield take(helloSaga);
@@ -64,5 +66,5 @@ function* helloSaga() {
 	}
 }
 export default function* userSaga() {
-	yield all([fork(watchLogin), helloSaga()]);
+	yield all([fork(helloSaga)]);
 }

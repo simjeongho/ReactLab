@@ -1,27 +1,21 @@
 import useInput from "@hooks/useInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { LoginLabButton, LoginLabContainer, LoginLabFormInput, LoginLabFormLabel } from "./styled";
-import { LoginResult } from "@auth/types";
+import { LoginRequest, LoginResult } from "@auth/types";
+import { useDispatch, useSelector } from "react-redux";
+
+import { selectUser } from "@store/store";
+import UseLoginForm from "@hooks/useLoginForm";
 
 const LoginLab = () => {
 	const [userid, setUserId] = useInput("");
 	const [userpassword, setUserPassword] = useInput("");
-	const [admin, setadmin] = useState<Boolean>(false);
-	console.log(userid);
-
-	const handleSubmitLoginLab = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		axios.post("/loginlaboratory", { id: userid, password: userpassword }).then((res: LoginResult) => {
-			const { admin } = res.data;
-			if (admin === true) {
-				setadmin(true);
-			} else {
-				setadmin(false);
-			}
-			const { id, password } = res.data.loginRequest;
-		});
-	};
+	const [handleSubmitLoginLab] = UseLoginForm(userid, userpassword);
+	const userInfo = useSelector(selectUser);
+	useEffect(() => {
+		console.log(userInfo.admin);
+	}, [userInfo]);
 
 	return (
 		<>
@@ -34,7 +28,7 @@ const LoginLab = () => {
 					placeholder="여기는 비밀번호"
 				></LoginLabFormInput>
 				<LoginLabButton type="submit">로그인 실험실</LoginLabButton>
-				{admin ? <h1>관리자입니다. </h1> : <h1>그냥 유저입니다. </h1>}
+				{userInfo.admin ? <h1>관리자입니다. </h1> : <h1>그냥 유저입니다. </h1>}
 			</LoginLabContainer>
 		</>
 	);
