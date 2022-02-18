@@ -5,6 +5,7 @@ import axios, { AxiosResponse } from "axios";
 import { useDispatch } from "react-redux";
 import { loginFailure, loginRequestAction, loginSuccess } from "../slice/user";
 import { all, fork, takeLatest, call, put, take } from "redux-saga/effects";
+import { delay1 } from "./rootSaga";
 import delay from "../../apis/delay";
 function loginAPI() {}
 
@@ -54,17 +55,26 @@ function* loginSaga() {
 // function* watchLogin() {
 // 	yield takeLatest(loginRequest, loginSaga);
 // }
-function* helloSaga() {
-	console.log("before hello saga");
-	//yield take(helloSaga);
-	console.log("hello saga");
+// function* helloSaga() {
+// 	console.log("before hello saga");
+// 	//yield take(helloSaga);
+// 	console.log("hello saga");
 
-	while (true) {
-		yield take(loginSuccess);
-		console.log("loginSuccess Watching");
-		alert("loginSuccess!"); //무한 watch 가능
-	}
+// 	while (true) {
+// 		yield take(loginSuccess);
+// 		console.log("loginSuccess Watching");
+// 		alert("loginSuccess!"); //무한 watch 가능
+// 	}
+// }
+
+function* loginLabWatch() {
+	yield console.log("im waiting saga");
+	yield delay1(3000);
+}
+
+function watchLoginLabRequest() {
+	takeLatest(loginSuccess, loginLabWatch);
 }
 export default function* userSaga() {
-	yield all([fork(helloSaga)]);
+	yield all([fork(watchLoginLabRequest)]);
 }

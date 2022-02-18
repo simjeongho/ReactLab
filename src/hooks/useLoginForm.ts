@@ -1,4 +1,4 @@
-import { loginFailure, loginSuccess, loginRequestAction, setUser, setAdmin } from "@store/slice/user";
+import { loginFailure, loginSuccess, loginRequestAction, setUser, setAdmin, setNotAdmin } from "@store/slice/user";
 import { useDispatch } from "react-redux";
 import AuthService from "@auth/auth-service";
 
@@ -20,10 +20,12 @@ const UseLoginForm = (id: string, password: string) => {
 			dispatch(loginRequestAction());
 			if (status === 200) {
 				dispatch(loginSuccess());
-				console.log("login Success");
+				console.log("loginlab Success");
 				//dispatch(setUser(loginRequest));
 				if (admin === true) {
 					dispatch(setAdmin());
+				} else {
+					dispatch(setNotAdmin());
 				}
 			} else {
 				throw new Error("에러에염");

@@ -63,6 +63,9 @@ const userSlice = createSlice({
 		setAdmin(state) {
 			state.admin = true;
 		},
+		setNotAdmin(state) {
+			state.admin = false;
+		},
 	},
 
 	extraReducers: (builder) => {
@@ -79,4 +82,5 @@ const userSlice = createSlice({
 });
 
 export default userSlice;
-export const { loginRequestAction, loginSuccess, loginFailure, helloSaga, setUser, setAdmin } = userSlice.actions;
+export const { loginRequestAction, loginSuccess, loginFailure, helloSaga, setUser, setAdmin, setNotAdmin } =
+	userSlice.actions;
